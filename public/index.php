@@ -2,10 +2,10 @@
 
 require_once __DIR__ . '/../includes/app.php';
 
+use Controllers\AuthController;
 use MVC\Router;
 
 $router = new Router();
-
 
 // Login
 $router->get('/login', [AuthController::class, 'login']);
@@ -27,6 +27,5 @@ $router->post('/reestablecer', [AuthController::class, 'reestablecer']);
 // Confirmación de Cuenta
 $router->get('/mensaje', [AuthController::class, 'mensaje']);
 $router->get('/confirmar-cuenta', [AuthController::class, 'confirmar']);
-
 
 $router->comprobarRutas();
