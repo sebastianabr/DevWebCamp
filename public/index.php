@@ -3,6 +3,11 @@
 require_once __DIR__ . '/../includes/app.php';
 
 use Controllers\AuthController;
+use Controllers\DashboardController;
+use Controllers\PonentesController;
+use Controllers\EventosController;
+use Controllers\RegalosController;
+use Controllers\RegistradosController;
 use MVC\Router;
 
 $router = new Router();
@@ -21,11 +26,29 @@ $router->get('/olvide', [AuthController::class, 'olvide']);
 $router->post('/olvide', [AuthController::class, 'olvide']);
 
 // Colocar el nuevo password
-$router->get('/reestablecer', [AuthController::class, 'reestablecer']);
-$router->post('/reestablecer', [AuthController::class, 'reestablecer']);
+$router->get('/recuperar', [AuthController::class, 'reestablecer']);
+$router->post('/recuperar', [AuthController::class, 'reestablecer']);
 
 // Confirmación de Cuenta
 $router->get('/mensaje', [AuthController::class, 'mensaje']);
-$router->get('/confirmar-cuenta', [AuthController::class, 'confirmar']);
+$router->get('/confirmar', [AuthController::class, 'confirmar']);
+
+//
+
+$router->get('/admin/dashboard',[DashboardController::class,'index']);
+
+
+$router->get('/admin/ponentes',[PonentesController::class,'index']);
+$router->get('/admin/ponentes/crear',[PonentesController::class,'crear']);
+$router->post('/admin/ponentes/crear',[PonentesController::class,'crear']);
+$router->get('/admin/ponentes/editar',[PonentesController::class,'editar']);
+$router->post('/admin/ponentes/editar',[PonentesController::class,'editar']);
+$router->post('/admin/ponentes/eliminar',[PonentesController::class,'eliminar']);
+
+$router->get('/admin/eventos',[EventosController::class,'index']);
+
+$router->get('/admin/registrados',[RegistradosController::class,'index']);
+
+$router->get('/admin/regalos',[RegalosController::class,'index']);
 
 $router->comprobarRutas();

@@ -1,8 +1,10 @@
 <main class="auth">
     <h2 class="auth__heading"><?php echo $titulo ?></h2>
     <p class="auth__texto">Regístrate en DevWebcamp</p>
-
-    <form class="formulario">
+    <?php
+        require_once __DIR__ . '/../templates/alertas.php';
+    ?>
+    <form class="formulario" method="POST" action="/registro">
     <div class="formulario__campo">
             <label for="nombre" class="formulario__label">Nombre</label>
             <input
@@ -49,7 +51,7 @@
         <div class="formulario__campo">
             <label for="password2" class="formulario__label">Repite tu Password</label>
             <input 
-                type="Password2" 
+                type="password" 
                 id="password2" 
                 placeholder="Repite tu password" 
                 class="formulario__input"

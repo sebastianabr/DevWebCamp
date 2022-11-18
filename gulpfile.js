@@ -77,10 +77,15 @@ function dev(done) {
     watch( paths.imagenes, versionAvif)
     done()
 }
+function watchCss(){
+    watch(paths.scss,css);
+    watch(paths.js,javascript);
+}
 
 exports.css = css;
 exports.js = javascript;
 exports.imagenes = imagenes;
 exports.versionWebp = versionWebp;
 exports.versionAvif = versionAvif;
+exports.default=watchCss;
 exports.dev = parallel( css, imagenes, versionWebp, versionAvif, javascript, dev) ;
