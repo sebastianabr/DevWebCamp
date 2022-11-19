@@ -7,6 +7,8 @@ const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const postcss = require('gulp-postcss');
 const sourcemaps = require('gulp-sourcemaps');
+const webpack=require('webpack-stream');
+const path = require('path')
 
 // Imagenes
 const cache = require('gulp-cache');
@@ -35,13 +37,15 @@ function css() {
 }
 function javascript() {
     return src(paths.js)
+      .pipe(webpack(require('./webpack.config')))
       .pipe(sourcemaps.init())
-      .pipe(concat('bundle.js')) 
+     // .pipe(concat('bundle.js')) 
       .pipe(terser())
       .pipe(sourcemaps.write('.'))
       .pipe(rename({ suffix: '.min' }))
       .pipe(dest('./public/build/js'))
 }
+
 
 function imagenes() {
     return src(paths.imagenes)
